@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>GCTU Hex Viewer</title>
+  <title>GCTU Code Viewer</title>
   <style>
     body {
       background-color: #fffafc;
@@ -75,14 +75,15 @@
 </head>
 <body>
   <form>
-    <h2>🌸 GCTUファイルをドロップ or 選択 🌸</h2>
+    <h2> GCTUファイルをドロップ or 選択 </h2>
     <div class="drop-zone" id="dropZone">
       ここに .gctu ファイルをドラッグ＆ドロップ<br>
       または<br>
       <label for="fileInput">ファイルを選択</label>
       <input type="file" id="fileInput" accept=".gctu">
-    </div>
-    <textarea id="hexOutput" readonly placeholder="ここにHEXが表示されます..."></textarea>
+    </div><textarea id="hexOutput" readonly placeholder="ここにコードが表示されます..."></textarea>
+    <button type="button" id="copyBtn" style="margin-top: 10px; background-color: #d26c9c; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer;">コピー</button>
+    
   </form>
 
   <script>
@@ -138,6 +139,11 @@
         handleFile(e.dataTransfer.files[0]);
       }
     });
+    document.getElementById("copyBtn").addEventListener("click", () => {
+      hexOutput.select();
+      document.execCommand("copy");
+    });
+
   </script>
 </body>
 </html>
